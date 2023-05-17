@@ -8,3 +8,9 @@ Requirements:
 * Rails
 * actioncable
 ___
+
+Steps:
+1. Add Models:
+```
+rails g model User provider uid name email image password_digest role && rails g model Notification title message:text
+```
