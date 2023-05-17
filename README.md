@@ -14,3 +14,7 @@ Steps:
 ```
 rails g model User provider uid name email image password_digest role && rails g model Notification title message:text
 ```
+2. Create Controllers:
+```
+rails g controller sessions new && rails g controller notifications index edit
+```
