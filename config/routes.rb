@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'notifications/index'
-  get 'notifications/edit'
-  get 'sessions/new'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :notifications
+  get "auth/:provider/callback", to: "sessions#create"
+  get "login", to: "sessions#new"
+  get "logout", to: "sessions#destroy"
+  get "dashboard", to: "notifications#index"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root "notifications#index"
 end
