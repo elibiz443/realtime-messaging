@@ -1,0 +1,28 @@
+<!-- Contacts -->
+<div class="bg-gray-100 flex-1 overflow-auto">
+  <% @contacts.each do |contact| %>
+    <div class="bg-white px-3 flex items-center hover:bg-gray-200 cursor-pointer">
+      <div>
+        <% if (contact.image).nil?  %>
+          <%= image_tag "img_avatar.png", class: "w-12 h-auto rounded-full" %>
+        <% else %>
+          <%= image_tag contact.image, class: "w-12 h-auto rounded-full" %>
+        <% end %>
+      </div>
+      <div class="ml-4 flex-1 border-b border-gray-200 py-4">
+        <% if contact.notifications.present? %>
+          <div class="flex items-bottom justify-between">
+            <p class="text-gray-700"><%= contact.name %></p>
+            <p class="text-xs text-gray-700"><%= contact.notifications.last.created_at.strftime("%I:%M %p") %></p>
+          </div>
+          <p class="text-gray-600 mt-1 text-sm"><%= contact.notifications.last.message %></p>
+        <% else %>
+          <div class="flex items-bottom justify-between">
+            <p class="text-gray-700"><%= contact.name %></p>
+          </div>
+          <p class="text-gray-300 mt-1 text-sm">No messages yet...</p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

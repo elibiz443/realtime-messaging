@@ -1,6 +1,7 @@
 class NotificationsController < ApplicationController
   def index
     @notification = Notification.new
+    @contacts = User.all
   end
 
   def create
