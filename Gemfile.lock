@@ -256,6 +256,7 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
+  actioncable (~> 7.0)
   bcrypt (~> 3.1.7)
   bootsnap
   database_cleaner-active_record
