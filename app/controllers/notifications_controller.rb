@@ -1,7 +1,12 @@
 class NotificationsController < ApplicationController
   def index
+    @notifications = Notification.all
     @notification = Notification.new
     @contacts = User.all
+  end
+
+  def show
+    @messages = User.find(params[:id]).notifications.map(&:message)
   end
 
   def create
