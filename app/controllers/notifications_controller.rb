@@ -5,10 +5,6 @@ class NotificationsController < ApplicationController
     @contacts = User.all
   end
 
-  def show
-    @messages = User.find(params[:id]).notifications.map(&:message)
-  end
-
   def create
     @notification = Notification.new(notification_params)
     if @notification.save

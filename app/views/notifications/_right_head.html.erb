@@ -2,14 +2,15 @@
 <div class="py-2 px-3 bg-gray-200 flex flex-row justify-between items-center">
   <div class="flex items-center">
     <div>
-      <img class="w-10 h-10 rounded-full" src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg"/>
+      <% if (@notifications.last.user.image).nil?  %>
+        <%= image_tag "img_avatar.png", class: "w-10 h-auto rounded-full" %>
+      <% else %>
+        <%= image_tag @notifications.last.user.image, class: "w-10 h-auto rounded-full" %>
+      <% end %>
     </div>
     <div class="ml-4">
       <p class="text-gray-700">
-        New Movie! Expendables 4
-      </p>
-      <p class="text-gray-darker text-xs mt-1">
-        Andrés, Tom, Harrison, Arnold, Sylvester
+        <%= @notifications.last.user.name %>
       </p>
     </div>
   </div>

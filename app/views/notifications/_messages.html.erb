@@ -3,7 +3,7 @@
   <div class="py-2 px-3">
     <div class="flex justify-center mb-2">
       <div class="rounded py-2 px-4 bg-[#DDECF2]">
-        <p class="text-sm uppercase"><%= (Time.zone.now).strftime("%B %e, %Y").upcase %></p>
+        <p class="text-xs md:text-sm uppercase"><%= (Time.zone.now).strftime("%B %e, %Y").upcase %></p>
       </div>
     </div>
     <div class="flex justify-center mb-4">
@@ -17,16 +17,20 @@
       <% if notification.user != current_user %>
         <div class="flex mb-2">
           <div class="rounded py-2 px-3 bg-[#F2F2F2]">
-            <p class="text-sm text-teal"><%= notification.user.name %></p>
-            <p class="text-sm mt-1"><%= notification.message %></p>
-            <p class="text-right text-xs text-gray-dark mt-1"><%= notification.created_at.strftime("%I:%M %p") %></p>
+            <p class="text-xs md:text-sm text-[#008080]"><%= notification.user.name %></p>
+            <p class="text-xs md:text-sm mt-1 text-gray-800"><%= notification.message %></p>
+            <p class="text-right text-xs md:text-sm text-gray-500 mt-1">
+              <%= notification.created_at.strftime("%I:%M %p") %>
+            </p>
           </div>
         </div>
       <% else %>
         <div class="flex justify-end mb-2">
           <div class="rounded py-2 px-3 bg-[#E2F7CB]">
               <p class="text-sm mt-1"><%= notification.message %></p>
-              <p class="text-right text-xs text-gray-dark mt-1"><%= notification.created_at.strftime("%I:%M %p") %></p>
+              <p class="text-right text-xs text-gray-dark mt-1">
+                <%= notification.created_at.strftime("%I:%M %p") %>    
+              </p>
           </div>
         </div>
       <% end %>
