@@ -1,5 +1,5 @@
 <!-- Messages -->
-<div class="flex-1 overflow-auto bg-[#DAD3CC]">
+<div class="rollpage flex-1 overflow-auto bg-[#DAD3CC]">
   <div class="py-2 px-3">
     <div class="flex justify-center mb-2">
       <div class="rounded py-2 px-4 bg-[#DDECF2]">
@@ -13,23 +13,23 @@
         </p>
       </div>
     </div>
-    <% @notifications.each do |notification| %>
-      <% if notification.user != current_user %>
+    <% records = (@notifications + @current_messages).sort_by(&:created_at) %>
+    <% records.each do |record| %>
+      <% if record.recipient == current_user.id %>
         <div class="flex mb-2">
           <div class="rounded py-2 px-3 bg-[#F2F2F2]">
-            <p class="text-xs md:text-sm text-[#008080]"><%= notification.user.name %></p>
-            <p class="text-xs md:text-sm mt-1 text-gray-800"><%= notification.message %></p>
+            <p class="text-xs md:text-sm mt-1 text-gray-800"><%= record.message %></p>
             <p class="text-right text-xs md:text-sm text-gray-500 mt-1">
-              <%= notification.created_at.strftime("%I:%M %p") %>
+              <%= record.created_at.strftime("%I:%M %p") %>
             </p>
           </div>
         </div>
       <% else %>
         <div class="flex justify-end mb-2">
           <div class="rounded py-2 px-3 bg-[#E2F7CB]">
-              <p class="text-sm mt-1"><%= notification.message %></p>
+              <p class="text-sm mt-1"><%= record.message %></p>
               <p class="text-right text-xs text-gray-dark mt-1">
-                <%= notification.created_at.strftime("%I:%M %p") %>    
+                <%= record.created_at.strftime("%I:%M %p") %>    
               </p>
           </div>
         </div>
@@ -37,3 +37,29 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+window.addEventListener('DOMContentLoaded', (event) => {
+  const container = document.querySelector('.rollpage'); // Replace with the appropriate selector for your container element
+
+  // Scroll to the bottom of the container
+  function scrollToBottom() {
+    container.scrollTop = container.scrollHeight;
+  }
+
+  // Scroll to the bottom initially
+  scrollToBottom();
+
+  // Observe changes in the container's child elements
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.addedNodes.length > 0) {
+        // New child element added, scroll to the bottom
+        scrollToBottom();
+      }
+    });
+  });
+
+  observer.observe(container, { childList: true });
+});
+</script>

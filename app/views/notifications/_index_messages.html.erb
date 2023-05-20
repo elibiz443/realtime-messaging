@@ -1,0 +1,23 @@
+<!-- Messages -->
+<div class="flex-1 overflow-auto bg-[#DAD3CC]">
+  <div class="py-2 px-3">
+    <div class="flex justify-center mb-2">
+      <div class="rounded py-2 px-4 bg-[#DDECF2]">
+        <p class="text-xs md:text-sm uppercase"><%= (Time.zone.now).strftime("%B %e, %Y").upcase %></p>
+      </div>
+    </div>
+    <div class="flex justify-center mb-4">
+      <div class="rounded py-2 px-4 bg-[#FCF4CB]">
+        <p class="text-xs">
+          Messages to this chat and calls are now secured with end-to-end encryption. Tap for more info.
+        </p>
+      </div>
+    </div>
+    <div class="mt-[4rem] flex justify-center items-center">
+      <%= image_tag "img_avatar.png", class: "w-[10rem] h-auto rounded-full" %>
+    </div>
+    <div class="text-center mt-5">
+      <span class="text-gray-500 text-sm">Click on contact and start Convo</span>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "login", to: "sessions#new"
   get "logout", to: "sessions#destroy"
   get "dashboard", to: "notifications#index"
+  get "message/:id", to: "notifications#message", as: :message
 
   root "notifications#index"
 end
